@@ -7,11 +7,33 @@ use PHPUnit\Framework\TestCase;
 
 class ProductTest extends TestCase
 {
-    public function testComputeTVAFoodProduct()
+    /**
+     * pricesTVAFoodProduct sera appelé par @dataProvider qui ce trouve
+     * dans testComputeTVAFoodProduct($price, $TVA), 
+     * il y aura autant d'assertion qu'il y a de tableau de tableau
+     * 
+     * [
+     *      [1000, 55.0] = [$price, $TVA]
+     * ]
+     */
+    public function pricesTVAFoodProduct()
     {
-        $product = new Product('hamburger', Product::FOOD_PRODUCT, 10);
+        return [
+            [0, 0.0],
+            [10, 0.55],
+            [100, 5.5],
+            [1000, 55.0]
+        ];
+    }
 
-        self::assertSame(0.55, $product->computeTVA());
+    /**
+     * @dataProvider pricesTVAFoodProduct
+     */
+    public function testComputeTVAFoodProduct($price, $TVA)
+    {
+        $product = new Product('hamburger', Product::FOOD_PRODUCT, $price);
+
+        self::assertSame($TVA, $product->computeTVA());
     }
 
     public function testComputeTVAProductTypeOther()
