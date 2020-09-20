@@ -14,9 +14,7 @@ before_script:
   - composer install
 
 script: 
-  - vendor\bin\phpunit
-
-os: windows
+  - vendor/bin/phpunit
 
 notifications:
   email: false
