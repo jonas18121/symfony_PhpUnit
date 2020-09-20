@@ -7,8 +7,6 @@ php:
   - '7.4'
   - '7.4.1'
 
-os: windows
-
 script: 
   - composer install
-  - vendor\bin\phpunit
+  - vendor/bin/phpunit
