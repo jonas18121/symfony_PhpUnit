@@ -7,6 +7,8 @@ php:
   - '7.4'
   - '7.4.1'
 
-script: 
+install:
   - composer install
+
+script: 
   - vendor/bin/phpunit
