@@ -1,11 +1,20 @@
 language: php
+
 php: 
   - '7.0'
   - '7.1'
   - '7.4'
 
-script: 
+services:
+  - mysql
+
+before_script:
   - composer install
+
+script: 
   - vendor\bin\phpunit
 
 os: windows
+
+notifications:
+  email: false
